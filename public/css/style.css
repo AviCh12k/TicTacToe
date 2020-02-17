@@ -12,13 +12,30 @@ body{
     background-color: rgba(0, 0, 0, 0.651);
 }
 .players{
+    position: relative;
     font-size: 30px;
     font-weight: 600;
     height: 60px;
     line-height: 60px;
     color: white;
 }
+.players i{
+    position: absolute;
+    right: 0%;
+    line-height: 60px;
+}
+.player-block .active{
+    color: yellow;
+}
 .game-block{
+    margin-top: 10px;
     max-height: 500px; 
     height: 80vw;
+}
+.game-block .col{
+    border: rgb(192, 192, 192) solid 3px;
+}
+.game-block .col{
+    font-size: 50%;
+    text-align: center;
 }
