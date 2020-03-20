@@ -19,6 +19,9 @@
     person2 = req.body.PlayerB;
     res.redirect("/game");
  })
+ app.post("/game",(req,res)=>{
+   res.redirect("/");
+})
  app.listen(3000,()=>{
     console.log("server started");
  });

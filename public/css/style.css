@@ -51,7 +51,7 @@ body{
     padding: 10px 0;
     background-color: black;
 }
-form{
+.form-class{
     position: absolute;
     left: 50%;
     transform:translateX(-50%);    

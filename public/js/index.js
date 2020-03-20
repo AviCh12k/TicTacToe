@@ -1,10 +1,12 @@
 let turn = 0;
 let count = 0;
-let winner = 0;
+let winner;
+let prev;
 
 function check_win(){
     if(document.querySelector("#one").innerHTML == document.querySelector("#two").innerHTML && document.querySelector("#three").innerHTML == document.querySelector("#two").innerHTML)
     {
+        console.log("123");
         return 1;
     }
     else if(document.querySelector("#one").innerHTML == document.querySelector("#four").innerHTML && document.querySelector("#seven").innerHTML == document.querySelector("#four").innerHTML)
@@ -46,20 +48,21 @@ function check_win(){
 document.querySelector(".game-block").addEventListener("click",e=>{
     count++;
     var input = e.target;
+    prev = input.id;
     console.log(input.id);
     if(turn == 0)
-    {
-        document.querySelector("#PlayerB").classList.remove("active");
-        document.querySelector("#PlayerA").classList.add("active");
+    {       
         document.querySelector("#" + input.id).innerHTML = '<i class="fas fa-circle">';
         turn = 1;
+        document.querySelector("#PlayerA").classList.remove("active");
+        document.querySelector("#PlayerB").classList.add("active");
     }
     else 
     {
-        document.querySelector("#PlayerA").classList.remove("active");
-        document.querySelector("#PlayerB").classList.add("active");
         document.querySelector("#" + input.id).innerHTML = '<i class="fas fa-times">';
         turn = 0;
+        document.querySelector("#PlayerB").classList.remove("active");
+        document.querySelector("#PlayerA").classList.add("active");
     }
     winner = check_win();
     if(winner == 1)
@@ -68,4 +71,27 @@ document.querySelector(".game-block").addEventListener("click",e=>{
     console.log("Draw");
     else if(winner == 0)
     console.log("Wait");
+})
+
+document.querySelector("#undo").addEventListener("click",()=>{
+    if(prev == 0)
+        alert("u cant");
+    else
+    { 
+        count--;
+        if (turn == 0)
+        {    
+            turn = 1;
+            document.querySelector("#PlayerA").classList.remove("active");
+            document.querySelector("#PlayerB").classList.add("active");
+        }
+        else
+        {    
+            turn = 0;
+            document.querySelector("#PlayerB").classList.remove("active");
+            document.querySelector("#PlayerA").classList.add("active");            
+        }
+        document.querySelector("#" + prev).innerHTML = "";
+        prev = 0;
+    }
 })
