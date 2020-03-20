@@ -1,14 +1,17 @@
 body{
+    position: relative;
     height: 100vh;
     width: 100vw;
     display: flex;
     align-items: center;
     background-image: url(/images/janko-ferlic-174927-unsplash.jpg);
     background-size: cover;
+    /* backdrop-filter: blur(3px); */
 }
 .container{
     max-width: 500px; 
     width: 80vw; 
+    /* filter: blur(3px); */
     background-color: rgba(0, 0, 0, 0.651);
 }
 .players{
@@ -43,4 +46,18 @@ body{
     margin-left: auto;
     margin-right: auto;
     color: white;
+}
+.reset{
+    padding: 10px 0;
+    background-color: black;
+}
+form{
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%);    
+    background-color: rgb(214, 210, 214);
+    padding: 50px;
+    max-width: 400px;
+    width: 70vw;
+    box-shadow: rgb(44, 43, 43) 1px 1px 20px;
 }
