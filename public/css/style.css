@@ -8,6 +8,13 @@ body{
     background-size: cover;
     /* backdrop-filter: blur(3px); */
 }
+#game-name{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 20%;
+}
 .container{
     max-width: 500px; 
     width: 80vw; 
@@ -40,6 +47,7 @@ body{
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    height: 167px;
 }
 .game-block .col i{ 
     font-size: 5em;
@@ -60,4 +68,13 @@ body{
     max-width: 400px;
     width: 70vw;
     box-shadow: rgb(44, 43, 43) 1px 1px 20px;
+}
+.winner{
+    position: relative;
+    font-size: 30px;
+    font-weight: 600;
+    height: 60px;
+    line-height: 60px;
+    color: rgb(21, 255, 0);
+    text-align: center;
 }

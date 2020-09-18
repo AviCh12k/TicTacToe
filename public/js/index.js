@@ -2,38 +2,52 @@ let turn = 0;
 let count = 0;
 let winner;
 let prev;
-
+var clientHeight = document.getElementById('one').clientHeight;
+console.log(clientHeight);
 function check_win(){
-    if(document.querySelector("#one").innerHTML == document.querySelector("#two").innerHTML && document.querySelector("#three").innerHTML == document.querySelector("#two").innerHTML)
+
+
+    // console.log(document.querySelector("#one").innerHTML.split('"')[1]);
+    // console.log(document.querySelector("#two").innerHTML);
+    // console.log(document.querySelector("#three").innerHTML);
+    // console.log(document.querySelector("#four").innerHTML);
+    // console.log(document.querySelector("#five").innerHTML);
+    // console.log(document.querySelector("#six").innerHTML);
+    // console.log(document.querySelector("#seven").innerHTML);
+    // console.log(document.querySelector("#eight").innerHTML);
+    // console.log(document.querySelector("#nine").innerHTML);
+
+
+    if(document.querySelector("#one").innerHTML.split('"')[1] == document.querySelector("#two").innerHTML.split('"')[1] && document.querySelector("#three").innerHTML.split('"')[1] == document.querySelector("#two").innerHTML.split('"')[1])
     {
         console.log("123");
         return 1;
     }
-    else if(document.querySelector("#one").innerHTML == document.querySelector("#four").innerHTML && document.querySelector("#seven").innerHTML == document.querySelector("#four").innerHTML)
+    else if(document.querySelector("#one").innerHTML.split('"')[1] == document.querySelector("#four").innerHTML.split('"')[1] && document.querySelector("#seven").innerHTML.split('"')[1] == document.querySelector("#four").innerHTML.split('"')[1])
     {
         return 1;
     }
-    else if(document.querySelector("#four").innerHTML == document.querySelector("#five").innerHTML && document.querySelector("#five").innerHTML == document.querySelector("#six").innerHTML)
+    else if(document.querySelector("#four").innerHTML.split('"')[1] == document.querySelector("#five").innerHTML.split('"')[1] && document.querySelector("#five").innerHTML.split('"')[1] == document.querySelector("#six").innerHTML.split('"')[1])
     {
         return 1;
     }
-    else if(document.querySelector("#seven").innerHTML == document.querySelector("#eight").innerHTML && document.querySelector("#eight").innerHTML == document.querySelector("#nine").innerHTML)
+    else if(document.querySelector("#seven").innerHTML.split('"')[1] == document.querySelector("#eight").innerHTML.split('"')[1] && document.querySelector("#eight").innerHTML.split('"')[1] == document.querySelector("#nine").innerHTML.split('"')[1])
     {
         return 1;
     }
-    else if(document.querySelector("#five").innerHTML == document.querySelector("#two").innerHTML && document.querySelector("#five").innerHTML == document.querySelector("#eight").innerHTML)
+    else if(document.querySelector("#five").innerHTML.split('"')[1] == document.querySelector("#two").innerHTML.split('"')[1] && document.querySelector("#five").innerHTML.split('"')[1] == document.querySelector("#eight").innerHTML.split('"')[1])
     {
         return 1;
     }
-    else if(document.querySelector("#three").innerHTML == document.querySelector("#six").innerHTML && document.querySelector("#six").innerHTML == document.querySelector("#nine").innerHTML)
+    else if(document.querySelector("#three").innerHTML.split('"')[1] == document.querySelector("#six").innerHTML.split('"')[1] && document.querySelector("#six").innerHTML.split('"')[1] == document.querySelector("#nine").innerHTML.split('"')[1])
     {
         return 1;
     }
-    else if(document.querySelector("#one").innerHTML == document.querySelector("#five").innerHTML && document.querySelector("#five").innerHTML == document.querySelector("#nine").innerHTML)
+    else if(document.querySelector("#one").innerHTML.split('"')[1] == document.querySelector("#five").innerHTML.split('"')[1] && document.querySelector("#five").innerHTML.split('"')[1] == document.querySelector("#nine").innerHTML.split('"')[1])
     {
         return 1;
     }
-    else if(document.querySelector("#seven").innerHTML == document.querySelector("#two").innerHTML && document.querySelector("#five").innerHTML == document.querySelector("#two").innerHTML)
+    else if(document.querySelector("#seven").innerHTML.split('"')[1] == document.querySelector("#three").innerHTML.split('"')[1] && document.querySelector("#five").innerHTML.split('"')[1] == document.querySelector("#three").innerHTML.split('"')[1])
     {
         return 1;
     }
@@ -46,6 +60,7 @@ function check_win(){
 }
 
 document.querySelector(".game-block").addEventListener("click",e=>{
+    document.getElementById("undo").disabled = false;
     count++;
     var input = e.target;
     prev = input.id;
@@ -66,9 +81,36 @@ document.querySelector(".game-block").addEventListener("click",e=>{
     }
     winner = check_win();
     if(winner == 1)
-    console.log("winner");
+    {
+        console.log("winner");
+        if(turn == 1)
+        {
+            console.log(document.querySelector("#PlayerA").innerHTML.split("<")[0]);
+            var name = document.querySelector("#PlayerA").innerHTML.split("<")[0];
+            document.querySelector("#PlayerA").innerHTML = name + " is Winner";
+        }
+        else
+        {
+            console.log(document.querySelector("#PlayerB").innerHTML.split("<")[0]);
+            var name = document.querySelector("#PlayerB").innerHTML.split("<")[0];
+            document.querySelector("#PlayerA").innerHTML = name + " is Winner";
+        }
+        
+        document.querySelector("#PlayerB").innerHTML = "";
+        document.querySelector("#PlayerA").classList.remove("active");
+        document.querySelector("#PlayerA").classList.remove("players");
+        document.querySelector("#PlayerA").classList.add("winner");
+    }
     else if(winner == -1)
-    console.log("Draw");
+    {
+        console.log("Draw");
+        document.querySelector("#PlayerA").innerHTML = "Match Draw  ";
+        document.querySelector("#PlayerB").innerHTML = "";
+        document.querySelector("#PlayerA").classList.remove("active");
+        document.querySelector("#PlayerA").classList.remove("players");
+        document.querySelector("#PlayerA").classList.add("winner");
+
+    }
     else if(winner == 0)
     console.log("Wait");
 })
@@ -93,5 +135,6 @@ document.querySelector("#undo").addEventListener("click",()=>{
         }
         document.querySelector("#" + prev).innerHTML = "";
         prev = 0;
+        document.getElementById("undo").disabled = true;
     }
 })
